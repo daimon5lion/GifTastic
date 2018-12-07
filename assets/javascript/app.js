@@ -15,8 +15,10 @@ $(document).ready(function() {
     "Chuck Norris",
     "Cillian Murphy"
   ];
+
   var maxNumber = 10;
   var apiKey = "&api_key=jcEJ7gPFb7MlueUoMmwWHrHv8X8v1kqw";
+
   function starButtons() {
     $("#buttonblock").empty();
     for (var i = 0; i < topics.length; i++) {
@@ -45,7 +47,7 @@ $(document).ready(function() {
       method: "GET"
     }).then(function(response) {
       if (response.data.length == 0) {
-        alert("No Gifs found for topic");
+        alert("No Gifs found for your topic");
       } else if (topics.indexOf(inputName) != -1) {
         alert("Topic already exists");
       } else {
@@ -55,7 +57,7 @@ $(document).ready(function() {
     });
   });
 
-  function displayGifs() {
+  function showGifs() {
     var person = $(this).attr("data-person");
     var queryURL =
       "https://api.giphy.com/v1/gifs/search?q=" +
@@ -73,7 +75,7 @@ $(document).ready(function() {
       $("#gifblock").empty();
       for (var i = 0; i < response.data.length; i++) {
         var gifDiv = $("<div>");
-        gifDiv.addClass("gifDiv");
+        gifDiv.addClass("gifdiv");
         gifDiv.html(
           "<p>Rating: " + response.data[i].rating.toUpperCase() + "</p>"
         );
@@ -100,7 +102,7 @@ $(document).ready(function() {
     });
   }
 
-  function playGif() {
+  function playGifs() {
     if ($(this).attr("data-state") == "still") {
       $(this).html("<img src='" + $(this).attr("data-animate") + "'>");
       $(this).attr("data-state", "animate");
@@ -110,8 +112,8 @@ $(document).ready(function() {
     }
   }
 
-  $(document).on("click", ".nameb", displayGifs);
-  $(document).on("click", ".play", playGif);
+  $(document).on("click", ".nameb", showGifs);
+  $(document).on("click", ".play", playGifs);
 
   starButtons();
 });
