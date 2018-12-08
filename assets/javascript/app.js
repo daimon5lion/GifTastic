@@ -30,6 +30,8 @@ $(document).ready(function() {
     }
   }
 
+  starButtons();
+
   $("#submitb").on("click", function(event) {
     event.preventDefault();
     var inputName = $("#cbox")
@@ -57,10 +59,6 @@ $(document).ready(function() {
       }
     });
   });
-
-  /*
- 
-*/
 
   function showGifs() {
     var person = $(this).attr("data-person");
@@ -121,10 +119,7 @@ $(document).ready(function() {
     }
   }
   /*
-  $("#addmore").on("click", function() {
-    showGifs();
-  });
-  
+ 
   */
   function runGifs() {
     $(document).on("click", ".nameb", showGifs);
@@ -132,6 +127,4 @@ $(document).ready(function() {
   }
 
   runGifs();
-
-  starButtons();
 });
