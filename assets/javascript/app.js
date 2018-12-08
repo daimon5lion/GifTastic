@@ -1,19 +1,19 @@
 $(document).ready(function() {
   var topics = [
-    "Arnold Schwarzenegger",
-    "Nicolas Cage",
-    "Ben Stiller",
-    "Jennifer Lawrence",
-    "Jackie Chan",
-    "Emma Stone",
-    "Harrison Ford",
-    "Megan Fox",
-    "Bruce Willis",
-    "Julianne Moore",
-    "Angelina Jolie",
-    "Tina Fey",
-    "Chuck Norris",
-    "Cillian Murphy"
+    "arnold schwarzenegger",
+    "nicolas cage",
+    "ben stiller",
+    "jennifer lawrence",
+    "jackie chan",
+    "emma stone",
+    "harrison ford",
+    "megan fox",
+    "bruce willis",
+    "julianne moore",
+    "angelina jolie",
+    "tina fey",
+    "chuck norris",
+    "cillian murphy"
   ];
 
   var maxNumber = 10;
@@ -34,6 +34,7 @@ $(document).ready(function() {
     event.preventDefault();
     var inputName = $("#cbox")
       .val()
+      .toLowerCase()
       .trim();
     var queryURL =
       "https://api.giphy.com/v1/gifs/search?q=" +
@@ -57,6 +58,10 @@ $(document).ready(function() {
     });
   });
 
+  /*
+ 
+*/
+
   function showGifs() {
     var person = $(this).attr("data-person");
     var queryURL =
@@ -77,7 +82,11 @@ $(document).ready(function() {
         var gifDiv = $("<div>");
         gifDiv.addClass("gifdiv");
         gifDiv.html(
-          "<p>Rating: " + response.data[i].rating.toUpperCase() + "</p>"
+          "<p>Title: " +
+            response.data[i].title +
+            "</p> <p> Rating: " +
+            response.data[i].rating.toUpperCase() +
+            "</P>"
         );
 
         var gifImage = $(
@@ -111,9 +120,18 @@ $(document).ready(function() {
       $(this).attr("data-state", "still");
     }
   }
+  /*
+  $("#addmore").on("click", function() {
+    showGifs();
+  });
+  
+  */
+  function runGifs() {
+    $(document).on("click", ".nameb", showGifs);
+    $(document).on("click", ".play", playGifs);
+  }
 
-  $(document).on("click", ".nameb", showGifs);
-  $(document).on("click", ".play", playGifs);
+  runGifs();
 
   starButtons();
 });
